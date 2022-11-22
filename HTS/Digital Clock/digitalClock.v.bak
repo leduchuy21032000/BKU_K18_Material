@@ -1,0 +1,157 @@
+module count12(qout,cout,data,load,cin,reset,clk);
+	output[4:0]qout;
+	output cout;
+	input[4:0]data;
+	input load,cin,clk,reset;
+	reg[4:0]qout;
+	always@(posedge clk)
+	begin
+		if(reset) qout<=1;
+		else if(load) qout<=data;
+		else if(cin)
+		begin
+			if((qout[3:0]==2)&&(qout[4]==1))
+			begin
+				qout[3:0]<=1;
+				qout[4]<=0;
+			end
+			else if (qout[3:0]==9)
+			begin
+				qout[3:0]<=0;
+				qout[4]<=qout[4]+1;
+			end
+			else
+				qout[3:0]<=qout[3:0]+1;
+		end
+	end
+
+assign cout=((qout==5'h12)&cin)?1:0;
+endmodule
+
+/////-------Second & minute --------//////
+module count60(qout,cout,data,load,cin,reset,clk);
+	output[7:0]qout;
+	output cout;
+	input[7:0]data;
+	input load,cin,clk,reset;
+	reg[7:0]qout;
+	always@(posedge clk)
+	begin
+		if(reset) qout<=0;
+		else if(load) qout<=data;
+		else if(cin)
+		begin
+			if(qout[3:0]==9)
+			begin
+				qout[3:0]<=0;
+				if(qout[7:4]==5) qout[7:4]<=0;
+				else
+					qout[7:4]<=qout[7:4]+1;
+			end
+			else
+				qout[3:0]<=qout[3:0]+1;
+		end
+	end
+assign cout=((qout==8'h59)&cin)?1:0;
+endmodule
+
+module freq_divider(clk,clk_out);//,count);
+	input clk;
+	output reg clk_out;
+	//output reg [25:0] count;
+	reg [25:0] count;
+	parameter n=50000000;
+
+	always@(posedge clk) //or negedge rst)
+	begin
+	/*	if(~rst)
+		begin
+			count<=4'b0;
+			clk_out<=1'b0;
+		end
+		else */if(count<n/2-1)
+			count<=count+1;
+		else 
+		begin
+			count<=4'b0;
+			clk_out<=~clk_out;
+		end
+	end
+endmodule
+
+module decoder(dec_out,dec_in);
+	input[3:0] dec_in;
+	output[0:6] dec_out;
+	reg[0:6] dec_out;
+	always @(dec_in)
+	begin
+	case(dec_in)
+	4'b0000: dec_out=7'b1111110;
+	4'b0001: dec_out=7'b0110000;
+	4'b0010: dec_out=7'b1101101;
+	4'b0011: dec_out=7'b1111001;
+	4'b0100: dec_out=7'b0110011;
+	4'b0101: dec_out=7'b1001111;
+	4'b0110: dec_out=7'b0011111;
+	4'b0111: dec_out=7'b1110000;
+	4'b1000: dec_out=7'b1111111;
+	4'b1001: dec_out=7'b1111011;
+	default:dec_out=7'b0000000;
+	endcase
+	end
+endmodule
+
+module displayAM_PM(HEX,clk);
+	input clk;
+	output reg [0:6]HEX;
+	reg m;
+	always@(posedge clk)
+	begin
+		m<= ~m;
+	
+	case(m)
+	1'b0: HEX=7'b0001000;
+	1'b1: HEX=7'b0011000;
+	endcase
+	end
+endmodule
+
+/*module decodeAMPM(HEX,clk);
+	input clk;
+	output reg [0:6]HEX;
+	wire m;
+	getAM_PM(m,clk);
+	always@(m)
+	case(m)
+	1'b0: HEX=7'b0001000;
+	1'b0: HEX=7'b0011000;
+	endcase
+endmodule*/
+
+module digitalClock(CLOCK_50,HEX6,HEX5,HEX4,HEX3,HEX2,HEX1,HEX0);
+	input CLOCK_50;
+	output [0:6]HEX6,HEX5,HEX4,HEX3,HEX2,HEX1,HEX0;
+	wire clk,clk_minute,clk_hour,clk_ampm;
+//	reg [25:0]count;
+	wire [7:0]sec,min;
+	wire [4:0]hour;
+	freq_divider(CLOCK_50,clk);//,count);
+	//------- second-----------//
+	count60(sec,clk_minute,0,0,1,0,clk);
+	decoder(HEX0,sec[3:0]);
+	decoder(HEX1,sec[7:4]);
+	
+	//-------minute----------//
+	count60(min,clk_hour,0,0,1,0,clk_minute);
+	decoder(HEX2,min[3:0]);
+	decoder(HEX3,min[7:4]);
+	
+	//hour//
+	
+	count12(hour,clk_ampm,0,0,1,0,clk_hour);
+	decoder(HEX4,hour[3:0]);
+	decoder(HEX5,hour[4]);
+	
+	//AM - PM//
+	displayAM_PM(HEX6,clk_ampm);
+endmodule

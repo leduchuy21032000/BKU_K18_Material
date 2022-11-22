@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<title>Algorithms</title>
+	<meta charset="utf-8">
+	<meta name="author" content="TUT">
+	<meta name="description" content=""/>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+
+	<nav class="tieude">
+  		<ul class="thanhtieude">
+    		<li><a href="trangchu.html">Home</a></li>
+    		<li><a href="nguyenli.html">Principle</a></li>
+    		<li><a href="cacthuattoan.html">algorithms</a></li>
+		<li><a href="tulieuthamkhao.html">References</a></li>
+		<li><a href="about.html">About us</a></li>
+		<li><a href="ketluan.html">More...</a></li>
+		</ul>
+	</nav>
+	<nav id="mucluc">
+		<ul class="thanhmucluc">
+			<li><a href="cacthuattoan.html#" class="muclon">PageRank</a></li>
+			<li><a href="cacthuattoan.html#">I. Giới thiệu chung</a></li>
+			<li><a href="cacthuattoan.html#mota">II. Mô tả thuật toán</a></li>
+			<li><a href="cacthuattoan.html#nhanxet">III. Nhận xét và kết luận</a></li>
+			<li><a href="cacthuattoan.html#motso" class="muclon">Other Search Algorithms by Google</a></li>
+			<li><a href="cacthuattoan.html#panda">1. Thuật toán Panda</a></li>
+			<li><a href="cacthuattoan.html#penguin">2. Thuật toán Penguin</a></li>
+			<li><a href="cacthuattoan.html#hummingbird">3. Thuật toán Hummingbird</a></li>
+			<li><a href="cacthuattoan.html#pigeon">4. Thuật toán Pigeon</a></li>
+			<li><a href="cacthuattoan.html#pirate">5. Thuật toán Pirate</a></li>
+			<li><a href="cacthuattoan.html#mobile">6. Thuật toán Mobile Friendly</a></li>
+			<li><a href="cacthuattoan.html#rankbrain">7. Thuật toán RankBrain</a></li>
+			<li><a href="cacthuattoan.html#possum">8. Thuật toán Possum</a></li>
+			<li><a href="cacthuattoan.html#fred">9. Thuật toán Fred</a></li>
+		</ul>
+	</nav>
+<section class="than">
+	<h1 align="center">PAGERANK </h1>
+	<h3 align="left">I. Giới thiệu chung: </h3>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	PageRank là một thuật toán phân tích liên kết (link) được phát triển bởi Larry Page và sau đó được Sergey Brin tiếp tục nghiên cứu với giả thuyết: “Sự lớn mạnh của một trang web có thể được đánh giá bởi số hyperlink (siêu liên kết) được trỏ đến trang web”. Dự án này là tiền đề cho sự ra đời của Google vào năm 1988. Giải thuật PageRank được Google sử dụng để làm thước đo đánh giá mức độ phổ biến của trang và xếp hạng các trang web đó trong kết quả công cụ tìm kiếm của họ. PageRank được hiển thị trên GoogleToolbar là một số nguyên từ 0 đến 10, thường thì trang có PageRank càng cao thì vị trí của nó trên trang tìm kiếm càng được ưu tiên. 
+	<p>
+	
+
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Trên thực tế, Google sẽ xem một liên kết từ trang A đến trang B như một bình chọn. Tuy nhiên, Google xem xét nhiều hơn là dựa trên khối lượng bình chọn hoặc số liên kết mà trang nhận được, nó còn phân tích về trang tác động đến bình chọn, bình chọn được thực hiện bởi các trang càng "quan trọng" thì càng làm cho các trang khác trở nên "quan trọng".
+	<a name="mota"> </a>
+	<br> <br>
+	<h3 align="left">II. Mô tả thuật toán: </h3>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	PageRank là phân bố xác suất, thể hiện khả năng khi một người click chuột ngẫu nhiên vào đường link và sẽ tới được trang web cụ thể. Ví dụ giá trị pagerank = 0.5 có nghĩa là 50% cơ hội một người nào đó click vào một link ngẫu nhiên để được chuyển đến văn bản đó.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	PageRank có thể được tính cho các tập văn bản với tài liệu có độ dài bất kỳ. Khi bắt đầu tính toán thì sự phân bố đó được chia đều cho tất cả những văn bản trong tập văn bản.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Các tính toán PageRank cần một số lần "lặp đi lặp lại" qua các văn bản trong tập để có thể đạt được giá trị thực tế một cách thiết thực hơn.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Công thức chung, giá trị PageRank đối với một trang bất kỳ <b>u</b> có thể tính như sau:
+	<p align = "center">
+	<a href="https://www.codecogs.com/eqnedit.php?latex=PR(u)&space;=&space;\sum_{v&space;\in&space;B_u}&space;\frac{PR(v)}{L(v)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?PR(u)&space;=&space;\sum_{v&space;\in&space;B_u}&space;\frac{PR(v)}{L(v)}" title="PR(u) = \sum_{v \in B_u} \frac{PR(v)}{L(v)}" /></a>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	(v là các trang có chứa trong trong tập hợp B <sub> u </sub> - tập chứa các trang có link đến trang u).
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Tuy nhiên, lý thuyết PageRank cho rằng, ngay cả một người dùng giả thiết click ngẫu nhiên vào các trang web thì cuối cùng cũng sẽ phải dừng lại. vì vậy thuật toán PageRank phải tính đến yếu tố damping (xác suất người dùng tiếp tục click trong bất cứ bước nào, ước lượng bằng 0.85) sử dụng mô hình khi người dùng bất kì sẽ cảm thấy chán sau một vài lần click và chuyển đến vài trang web khác một cách ngẫu nhiên. Như vậy:
+	<p align = "center">
+	<a href="https://www.codecogs.com/eqnedit.php?latex=PR(A)&space;=&space;\frac{1-d}{N}&space;&plus;&space;d(\frac{PR(B)}{L(B)}&plus;\frac{PR(C)}{L(C)}&plus;\frac{PR(D)}{L(D)}&plus;...)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?PR(A)&space;=&space;\frac{1-d}{N}&space;&plus;&space;d(\frac{PR(B)}{L(B)}&plus;\frac{PR(C)}{L(C)}&plus;\frac{PR(D)}{L(D)}&plus;...)" title="PR(A) = \frac{1-d}{N} + d(\frac{PR(B)}{L(B)}+\frac{PR(C)}{L(C)}+\frac{PR(D)}{L(D)}+...)" /></a>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Nếu như trang web không có đường link đến các trang khác, nó sẽ thành ngõ cụt và việc truy cập ngẫu nhiên sẽ dừng lại. Nhưng nếu người dùng đến trang không có các link khác, thì người dùng sẽ chọn ngẫu nhiên một trang khác để tiếp tục truy cập. Khi tính Pagerank, những trang không có link trỏ đi các trang khác sẽ được giả định có link trỏ đến tất cả các trang trong tập văn bản. Và như vậy giá trị Pagerank sẽ được chia đều cho các trang khác. Nói một cách khác, để công bằng với những trang web có outbound link, thì các truy cập ngẫu nhiên sẽ được thêm vào tất cả những trang trong Web, với xác suất d=0.85, được ước tính từ tần số trung bình mà người dùng sử dụng khi đánh dấu một tính năng bằng trình duyệt.
+	<p align = "center">
+	<a href="https://www.codecogs.com/eqnedit.php?latex=PR(A)&space;=&space;1-&space;d&space;&plus;&space;d(\frac{PR(B)}{L(B)}&plus;\frac{PR(C)}{L(C)}&plus;\frac{PR(D)}{L(D)}&plus;...)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?PR(A)&space;=&space;1-&space;d&space;&plus;&space;d(\frac{PR(B)}{L(B)}&plus;\frac{PR(C)}{L(C)}&plus;\frac{PR(D)}{L(D)}&plus;...)" title="PR(A) = 1- d + d(\frac{PR(B)}{L(B)}+\frac{PR(C)}{L(C)}+\frac{PR(D)}{L(D)}+...)" /></a>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Xét các ví dụ sau:
+	<p>
+	<img align="center" src = img/PR.png >
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Qua thuật toán này, ta có những nhận xét rằng:
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	- Những trang không có backlinks thì cùng giá trị PR và <a href="https://www.codecogs.com/eqnedit.php?latex=PR&space;=&space;\frac{1-d}{N}&space;\approx&space;0.016" target="_blank"><img src="https://latex.codecogs.com/gif.latex?PR&space;=&space;\frac{1-d}{N}&space;\approx&space;0.016" title="PR = \frac{1-d}{N} \approx 0.016" /></a>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	- Các trang có cùng (hoặc đối xứng) backlinks thì có cùng giá trị PR, như D và F
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	- 1 backlink từ 1 trang PR cao sẽ tốt hơn rất nhiều so với nhiều backlinks từ các trang PR thấp.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Gọi G là một đồ thị các trang Web. Đặt G(V,E) với V=(1,2,...,n) là tập n đỉnh của đồ thị (mỗi đỉnh là một trang Web cần tính hạng trang) còn E là tập các cạnh, E = {(i,j) nếu có siêu liên kết từ trang i trang j}. Chúng ta giả thiết rằng đồ thị trang Web là liên thông, nghĩa là từ một trang bất kì có thể có đường liên kết tới một trang Web khác trong đồ thị đó. Với mỗi trang Web i, kí hiệu N(i) là số liên kết đi ra từ trang Web thứ i và B(i) là số các trang Web có liên kết đến trang i.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Khi đó hạng trang r(i) của trang Web i được định nghĩa như sau:
+	<p align="center">
+	<a href="https://www.codecogs.com/eqnedit.php?latex=r(i)&space;=&space;\sum_{j&space;\in&space;B(i)}&space;(^{r(j)}_{n(j)})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?r(i)&space;=&space;\sum_{j&space;\in&space;B(i)}&space;(^{r(j)}_{n(j)})" title="r(i) = \sum_{j \in B(i)} (^{r(j)}_{n(j)})" /></a>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Việc ta chia cho N(i) cho thấy rằng những trang có liên kết tới trang i sẽ phân phối hạng của chúng cho các trang Web mà chúng liên kết tới.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Các phương trình này được viết lại dưới dạng ma trận r=rP trong đó:
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	r = [r1,r2,...,rn] là vector PageRank, với ri là hạng của trang Web i trong đồ thị trang Web.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	P là ma trận chuyển n x n với giá trị các phần tử được xác định:
+	<ul type=square>
+		<li> 1: nếu liên kết từ i đến j
+		<li> 0: ngược lại
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Từ đó công thức PageRank được viết lại: r=rP
+	<a name="nhanxet"> </a>
+	<br> <br>
+	<h3 align = "left">III. Nhận xét và kết luận: </h3>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Ưu điểm: PageRank là một phương pháp tính hạng khá tốt và có quá trình tính toán độc lập với người dùng nên có thể thực hiện độc lập và không ảnh hưởng đến tốc độ tìm kiếm.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Nhược điểm: Thuật toán chỉ quan tâm đến các liên kết giữa các trang Web mà không quan tâm đến nội dung trang Web nên có thể dễ bị đánh lừa bởi công nghệ spam.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> Tuy nhiên </b> vào năm 2016, Google đã gỡ bỏ PageRankToolbar và xóa điểm số PageRank công khai.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Lý do chính là bởi nhược điểm đã trình bày bên trên của PageRank: liên kết spam.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Thật công bằng khi nói rằng SEO từ lâu đã bị ám ảnh bởi PageRank như một yếu tố xếp hạng, có lẽ bởi vì cái gọi là “thanh công cụ PageRank” cung cấp một thước đo có thể nhìn thấy, theo đúng nghĩa đen, về mức độ xứng đáng của một trang web.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Tại thời điểm đó không có thước đo trực quan nào tồn tại đối với bất kỳ yếu tố xếp hạng nào khác, điều đó khiến cho PageRank là yếu tố duy nhất quan trọng. Kết quả là, mọi người sớm bắt đầu mua và bán các liên kết “PR cao”. Nó đã trở thành một ngành công nghiệp khổng lồ.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Có rất nhiều cách để người bán liên kết xây dựng các liên kết "PR cao". Vào giữa những năm 2000, một trong những chiến thuật mua lại chính là để lại nhận xét trên blog.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Đối với Google, đây là một vấn đề lớn. Liên kết ban đầu là một thẩm phán tốt về chất lượng bởi vì chúng được đưa ra tự nhiên cho các trang xứng đáng. Các liên kết không tự nhiên làm cho thuật toán của họ kém hiệu quả hơn trong việc làm sáng tỏ các trang chất lượng cao từ những trang có chất lượng thấp.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Vậy nên Google đã gỡ bỏ PageRankToolbar và xóa điểm số PageRank công khai và nói rằng: <i> "Khi Internet và sự hiểu biết của chúng ta về Internet đã phát triển phức tạp, điểm số PageRank của thanh công cụ đã trở nên ít hữu ích hơn đối với người dùng dưới dạng chỉ số đơn lẻ. Gỡ bỏ hiển thị PageRank khỏi thanh công cụ giúp tránh nhầm lẫn giữa người dùng và quản trị viên web về tầm quan trọng của chỉ số" </i>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> Nhưng </b> chắc chắn một điều rằng Google PagRank <b> vẫn chưa chết </b> và vẫn đóng một vai trò cực kì quan trọng đối với các thuật toán tìm kiếm khác của Google. 
+	<a name="motso"> </a>
+	<br> <br>
+	<h1 align="center">MỘT SỐ THUẬT TOÁN TÌM KIẾM KHÁC CỦA GOOGLE </h1>
+	<img src = img/SA.png>
+	
+	<br> <br> 
+	<a name="panda"> </a>
+	<br> <br>
+	<h3 align="left">1. Thuật toán Panda (gấu trúc): </h3>
+	<p>
+	<img src = img/panda.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Google Panda là thuật toán chuyên xử lý các website có chất lượng nội dung thấp, nghèo nàn, spam, copy,…. Một khi bị Panda áp đặt hình phạt, website của bạn sẽ không thể có được thứ hạng cao trên công cụ tìm kiếm.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Ban đầu, Panda có vai trò như một bộ lọc, chuyên lọc các website có nội dung kém chất lượng ra khỏi cuộc chơi đua hạng trên Google Search. Tuy nhiên, đến đầu năm 2016, thuật toán Panda đã chính thức được Google đưa vào danh sách là một phần trong những thuật toán cốt lõi xếp hạng tìm kiếm của họ. Nghĩa là đã được hơn 1 năm rồi, Panda luôn trong trạng thái Real – time (luôn luôn hoạt động, chứ không hoạt động cục bộ, theo chu kỳ như xưa nữa ) do đó website của bạn có thể bị phạt cũng có thể được gỡ phạt nhanh hơn trước rất nhiều.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> b) Mục tiêu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Thuật toán Panda thường quét vào những lỗi sau:
+	<ul type=square>
+		<li> Nội dung trùng lặp quá nhiều.
+		<li> Đi copy nội dung từ website khác.
+		<li> Nội dung quá thô sơ, nghèo nàn.
+                <li> Spam do người dùng.
+		<li> Nhồi nhét từ khóa.
+		<li> Nội dung website không thu hút được người dùng.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> c) Làm sao để tránh thuật toán Panda? </b>
+	<ul type=square>
+		<li> Bước 1: Kiểm tra nội dung trùng lặp trên website của bạn.
+		<li> Bước 2: Kiểm tra đạo văn, nội dung copy.
+		<li> Bước 3: Xác định nội dung kém chất lượng.
+		<li> Bước 4: Kiểm tra sự nhồi nhét từ khóa trên website.
+		<li> Bước 5:  Khắc phục các lỗi có thể đưa bạn thành miếng mồi ngon cho Panda.
+	</ul>
+	<a name="penguin"> </a>
+	<br> <br> <br>
+	<h3 align="left">2. Thuật toán Penguin (chim cánh cụt): </h3>
+	<p>
+	<img src = img/penguin.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Mục tiêu của thuật toán Penguin (Chim cánh cụt ) chính là các website có hồ sơ liên kết kém chất lượng, liên kết spam và không tự nhiên. Chim cánh cụt là nỗi ám ảnh lớn nhất đối với không chỉ SEO mũ đen mà ngay cả SEO mũ trắng nếu không cẩn thận đi đúng con đường cũng sẽ dễ dàng trở thành con mồi của nó.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Từ cuối năm 2016, Penguin được xếp vào là một trong những thuật toán cốt lõi của Google và luôn hoạt động Real time nghĩa là luôn luôn hoạt động trong thời gian thực. Điều đó có nghĩa là bạn có thể bị phạt nhanh hơn và cũng có thể được giải thoát bởi hình phạt này nhanh hơn. Đối với những webmaster mà có tên miền bị phạt bởi Penguin thì đây có lẽ là tin mừng họ mong chờ nhất từ Google, Bởi trước đây, một khi bị phạt bởi Penguin, bạn chỉ còn cách chờ đợi đợt cập nhật nâng cấp tiếp theo của thuật toán thì mới có cơ hội được xem xét tha hay không. Có những người phải chờ đợi mấy năm trời, như vậy chẳng thà bạn đi mua luôn một tên miền mới còn hơn ngồi chờ đợi ngày ra tù với thời gian khủng khiếp ấy.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Hồ sơ liên kết của bạn là các website kém chất lượng, các website spam.
+		<li> Liên kết đến từ các website có mục đích chỉ để xây dựng liên kết. Private Blog Networks (PBNs) là xu hướng xây dựng liên kết trong năm 2017. Đây là hình thức xây dựng rất tốn kém nhưng lại là xu hướng bởi những lợi ích to lớn mà nó mang lại nếu bạn làm đúng cách, và chỉ cần chờ bạn sai lầm, Penguin sẽ có một miếng mồi ngon ngay lập tức, hậu quả có thể là cả hệ thống của bạn ra đi.
+		<li> Backlink từ các website không liên quan gì đến chủ đề của bạn.
+		<li> Mua bán liên kết. Google luôn nỗ lực để giảm thiểu việc sử dụng text link bởi các SEOer. Nhân đây, tôi cũng muốn khẳng định một điều với một số bạn Newbie rằng text link không bao giờ mất giá trị của nó. Bởi backlink luôn là một phần của xếp hạng tìm kiếm. Textlink nó giống như kiểu bạn sản xuất công nghiệp vậy, được toàn trang liên kết đến website đích, thay vì một vài liên kết trong bài viết. Có bạn nhắn tin hỏi tôi rằng có phải text link đã mất giá trị không, sao mình cứ đặt là tụt hạng vậy. Đó là bởi vì website của bạn chưa đủ sức để tiếp nhận text link đó. Bạn cứ tưởng tượng sơn hào hải vị đúng là tốt cho sức khỏe thật, cho bạn ăn một con cua gạch thì ăn được và tốt cho bạn chứ bắt bạn ăn 10kg một lúc bạn sẽ bội thực và chết ngay!
+		<li>  Bạn nhồi nhét quá nhiều liên kết vào một từ khóa tập trung.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Penguin? </b>
+	<ul type=square>
+		<li> Bước 1: Giữ cho sự tăng trưởng liên kết một cách tự nhiên nhất.
+		<li> Bước 2: Kiểm tra khả năng bạn bị Google Penguin bị phạt.
+		<li> Bước 3: Loại bỏ các liên kết xấu.
+	</ul>
+	<a name="hummingbird"> </a>
+	<br> <br> <br>
+	<h3 align="left">3. Thuật toán Hummingbird (chim ruồi): </h3>
+	<p>
+	<img src = img/hummingbird.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Thuật toán Google Hummingbird là một bước tiến lớn vượt bậc của công cụ tìm kiếm lớn nhất thế giới với mục đích hiểu được truy vấn tìm kiếm của người dùng, hiểu được nội dung website nói về vấn đề gì để từ đó đưa ra kết quả chính xác nhất.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Trước thời Hummingbird, kết quả tìm kiếm dựa rất nhiều vào từ khóa tìm kiếm của người dùng và sự xuất hiện của từ khóa trong văn bản nội dung website cung cấp.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Các từ khóa truy vấn của người dùng vẫn đóng một vai trò rất quan trọng trong việc đưa ra kết quả tuy nhiên Hummingbird giúp cho Google đưa ra các kết quả mà thậm chí nội dung của page đó không có từ khóa mà người dùng tìm kiếm nhưng nội dung của nó lại nói đến vấn đề mà người dùng đang cần.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Với thuật toán chim ruồi Hummingbird, Google đủ thông minh để hiểu được các từ đồng nghĩa, các từ viết tắt phổ biến.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Nhồi nhét từ khóa.
+		<li> Nhắm mục tiêu từ khóa không chính xác.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Hummingbird? </b>
+	<ul type=square>
+		<li> Bước 1: Mở rộng nghiên cứu từ khóa của bạn.
+		<li> Bước 2: Khám phá suy nghĩ của người dùng.
+		<li> Bước 3: Viết nội dung chất lượng, dừng sử dụng các công cụ spin lại.
+	</ul>
+	<a name="pigeon"> </a>
+	<br> <br> <br>
+	<h3 align="left"> 4. Thuật toán Pigeon (chim bồ câu): </h3>
+	<p>
+	<img src = img/pigeon.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Thuật toán Google Pigeon hiện mới chỉ áp dụng tại các quốc gia sử dụng tiếng Anh là chính như nước Anh, Canada và Úc. Pigeon đã tác động tương đối lớn đến kết quả tìm kiếm của người dùng, một trong những yếu tố quyết định đến kết quả người dùng do thuật toán này gây ảnh hưởng đó chính là vị trí tìm kiếm.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Theo Google, Pigeon tạo ra sự thân thiện, gần gũi hơn giữa các thuật toán địa phương và các thuật toán cốt lõi của họ. Bản cập nhật này sử dụng vị trí là một yếu tố quan trọng để xếp hạng tìm kiếm.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Pigeon làm cho công cụ tìm kiếm trả về kết quả có ít nhất là 50$\%$ các website địa phương. Đây là một lợi thế lớn đối với các doanh nghiệp có Google My Business.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Hiện tại, ở Việt Nam chúng ta chưa có thuật toán này. Tuy nhiên, qua những bước đi chuyển hướng công cụ tìm kiếm về các tên miền địa phương của Google tôi tin, khả năng cao không lâu nữa thuật toán này cũng sẽ được phát hành toàn cầu.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Trang web tối ưu hóa kém.
+		<li> Thiết lập Google My Business không đúng cách.
+		<li> Mâu thuẫn các thông tin liên hệ của doanh nghiệp.
+		<li> Thiếu trích dẫn trong thư mục địa phương (nếu có liên quan).
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Pigeon? </b>
+	<ul type=square>
+		<li> Bước 1: Tối ưu hóa trang web của bạn đúng cách.
+		<li> Bước 2: Thiết lập trang Google My Business.
+		<li> Bước 3: Đảm bảo thông tin doanh nghiệp của bạn là nhất quán trên mọi kênh.
+		<li> Bước 4: Nhận giới thiệu từ các website địa phương.
+	</ul> 
+	<a name="pirate"> </a>
+	<br> <br> <br>
+	<h3 align="left"> 5. Thuật toán Pirate:</h3>
+	<p>
+	<img src = img/pirate.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Thuật toán Pirate xuất hiện nhằm trừng phạt các website vi phạm bản quyền nội dung, bị nhiều báo cáo vi phạm gửi đến Google.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Để yêu cầu Google xử lý bản quyền các bạn truy cập vào liên kết sau: <a HREF=https://support.google.com/legal/troubleshooter/1114905?hl=vi> https://support.google.com/legal/troubleshooter/1114905?hl=vi </a>. Trang này sẽ giúp bạn truy cập đúng nơi để báo cáo nội dung bạn muốn yêu cầu xóa khỏi các dịch vụ của Google theo luật hiện hành. Việc cung cấp cho chúng tôi thông tin đầy đủ sẽ giúp chúng tôi điều tra yêu cầu của bạn.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Google cũng bị kiện rất nhiều liên quan đến vấn đề để cho các website ăn cắp nội dung được hiển thị cao trên công cụ tìm kiếm của họ, Vì thế không có gì khó hiểu khi họ rất mạnh tay xử phạt các website chuyên ăn cắp nội dung mà không được sự đồng ý của tác như phim ảnh, tài liệu khoa học,…
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Website vi phạm bản quyền nội dung.
+		<li> Website bị báo cáo quá nhiều lần vi phạm bản quyền.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Pirate? </b>
+	<ul type=square>
+		<li> Hãy đảm bảo rằng nội dung bạn xuất bản lại của người khác là không có đăng ký bản quyền hoặc được sự cho phép từ tác giả. 
+	</ul> 
+	<a name="mobile"> </a>
+	<br> <br> <br>
+	<h3 align="left"> 6. Thuật toán Mobile Friendly (thân thiện với di động):</h3>
+	<p>
+	<img src = img/mobile.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Thuật toán Mobile Friendly (thân thiện với di động) được Google ra mắt ngày 21 tháng 4 năm 2015. Kể từ đây, chúng ta sẽ thấy có sự khác biệt tìm kiếm trên điện thoại di động và laptop nếu một website không thân thiện với thiết bị di động. Điều này càng thể hiện rõ hơn sau khi Google cập nhật một loạt thuật toán vào tháng 9 năm 2016. Và cuối cùng đó là sự khác biệt hẳn giữa kết quả tìm kiếm trên máy tính và điện thoại nếu website không thân thiện với di động khi Google bắt đầu lập chỉ mục tìm kiếm đầu tiên cho điện thoại di động. Có rất nhiều chuyên gia dự đoán rằng về lâu dài có khả năng rất cao Google sẽ sử dụng yếu tố trên di động để xếp hạng luôn website khi người dùng sử dụng laptop.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Website không có phiên bản dành cho thiết bị di động điều này có nghĩa là thiết bị hoàn toàn không thân thiện
+		<li> Chữ quá nhỏ, hoặc các dòng quá gần nhau dẫn đến người dùng khó đọc.
+		<li> Sử dụng nhiều Plugin.
+		<li> Cấu hình khung hình chế độ xem không tốt.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Mobile Friendly? </b>
+	<ul type=square>
+		<li> Ngay từ khi thiết kế website bạn hãy đảm bảo rằng website của bạn thân thiện với di động. Để kiểm tra độ thân thiện với di động Google cung cấp tool miễn phí cho chúng ta sử dụng đó là công cụ Kiểm tra tính thân thiện của di động.
+	</ul>
+	<a name="rankbrain"> </a>
+	<br> <br> <br>
+	<h3 align="left"> 7. Thuật toán RankBrain:</h3>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	RankBrain là hệ thống máy móc giúp Google phân tích, giải mã các ý nghĩa những truy vấn tìm kiếm khác nhau của người dùng để từ đó đưa ra kết quả chính xác nhất trên công cụ tìm kiếm.
+	<p>
+	<img src = img/rankbrain.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Chỉ có một thành phần xử lý truy vấn trong RankBrain nhưng đó cũng chính là yếu tố xếp hạng của thuật toán này. Lần đầu tiên khi công bố thuật toán RankBrain, Google khẳng định rằng đây là một trong 3 yếu tố xếp hạng quan trọng nhất của họ. Bằng cách nào đó, RankBrain có thể đánh giá tóm tắt được nội dung của một website để rồi từ đó đưa ra kết quả tốt nhất liên quan đến tìm kiếm của người dùng.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Về mặt cơ bản, RankBrain cũng xếp hạng website dựa vào các yếu tố truyền thống như backlink, tối ưu on page,… Ngoài ra, RankBrain còn xem xét đánh giá các truy vấn cụ thể khác để từ đó đưa ra kết quả liên quan nhất, chất lượng nhất cho người dùng.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Các website thiếu sự liên quan đến truy vấn cụ thể.
+		<li> Website cung cấp trải nghiệm người dùng kém.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán RankBrain? </b>
+	<ul type=square>
+		<li> Bước 1: Tối ưu hóa trải nghiệm người dùng.
+		<li> Bước 2: Nghiên cứu đối thủ cạnh tranh.
+	</ul>
+	<a name="possum"> </a>
+	<br> <br> <br>
+	<h3 align="left"> 8. Thuật toán Possum:</h3>
+	<p>
+	<img src = img/possum.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Bản cập nhật gây xôn xao, khiến cộng đồng SEO chao đảo vào đầu tháng 9 năm ngoái của Google khiến kết quả tìm kiếm địa phương thay đổi chóng mặt do đó nó được đặt tên là thuật toán Possum.Sau khi Possum được cập nhật, Google Search đưa ra kết quả tìm kiếm phong phú hơn nhiều dựa vào vị trí tìm kiếm của người dùng.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Nếu bạn ở gần doanh nghiệp cung cấp dịch vụ mà bạn đang quan tâm thì doanh nghiệp đó có khả năng xuất hiện trên công cụ tìm kiếm rất cao.  Hơi nghịch lý một chút là chính Possum cũng khuyến khích các doanh nghiệp ngoài địa phương tăng cường sự hiện diện ở nơi khác.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Trước đây, nếu doanh nghiệp của bạn nằm ngoài vùng địa lý sẽ không được ưu tiên hiển thị và đưa vào danh sách địa phương tuy nhiên bây giờ điều này đã thay đổi, bạn vẫn có thể tăng cường hiện diện ở địa phương khác. Ngoài ra các doanh nghiệp chia sẽ một doang nghiệp khác cung cấp dịch vụ liên quan truy vấn của người dùng cũng có cơ hội được xuất hiện trên tìm kiếm địa phương.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Xử lý các doanh nghiệp trùng lặp địa chỉ, cung cấp dịch vụ tương tự nhau.
+		<li> Đối thủ cạnh tranh có địa chỉ gần người tìm kiếm hơn.
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Possum? </b>
+	<ul type=square>
+		<li> Bước 1: Theo dõi xếp hạng địa phương cụ thể.
+		<li> Bước 2: Phát triển danh sách từ khóa tìm kiếm địa phương.
+	</ul>
+	<a name="fred"> </a>
+	<br> <br> <br>
+	<h3 align="left"> 9. Thuật toán Fred:</h3>
+	<p>
+	<img src = img/fred.jpg>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> a) Giới thiệu: </b>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Thuật toán Fred là một cập nhật của Google vào ngày mùng 8 tháng 3 năm 2017 làm cộng đồng SEO trên toàn cầu chao đảo, có rất nhiều website giảm traffic đến mức chỉ còn bằng 1 phần 10 trước đây. Cái tên Fred là do Gary Illyes của Google nói đùa trên Twitter của ông. Google đã xác nhận sự có mặt của thuật toán này, tuy nhiên họ từ chối đưa ra thảo luận về cập nhật này với lý do là để đảm bảo chất lượng tìm kiếm cho người dùng.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	Kết quả nghiên cứu từ các công cụ theo dõi Google tự động cho thấy thuật toán Fred hướng đến các website chỉ có mục đích quảng cáo là chính, spam liên kết, chất lượng nội dung kém mà không hướng đến người dùng.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> b) Mục tiêu: </b>
+	<ul type=square>
+		<li> Website có nội dung kém, quảng cáo quá nhiều.
+		<li> Hồ sơ liên kết kém chất lượng
+	</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	<b> c) Làm sao để tránh thuật toán Fred? </b>
+	<ul type=square>
+		<li> Bước 1: Thực hiện đúng nội quy quản trị website của Google.
+		<li> Bước 2: Xây dựng nội dung website chất lượng.
+	</ul>
+	<br> <br> <br>
+
+
+</section>
+</body>
+</html>

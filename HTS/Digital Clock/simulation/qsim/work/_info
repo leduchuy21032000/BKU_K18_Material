@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\BKU\HTS\Digital Clock\simulation\qsim
+vdigitalClock
+Z1 !s100 il3e]B0h_TM3>YQMk1M_F1
+Z2 IRKI?]D`d=h60Xn5RO7=>^2
+Z3 V=a7gRh>[3IMAQL;OlHYVG2
+Z4 dD:\BKU\HTS\Digital Clock\simulation\qsim
+Z5 w1558058178
+Z6 8digitalClock.vo
+Z7 FdigitalClock.vo
+L0 31
+Z8 OV;L;10.1d;51
+r1
+31
+Z9 !s90 -work|work|digitalClock.vo|
+Z10 o-work work -O0
+Z11 ndigital@clock
+!i10b 1
+!s85 0
+Z12 !s108 1558058180.630000
+Z13 !s107 digitalClock.vo|
+!s101 -O0
+vdigitalClock_vlg_check_tst
+!i10b 1
+Z14 !s100 lI5L1?hedYU<fkR<Q=;o]2
+Z15 IW;?Nlzmoj43n4Y`Vf_=<<1
+Z16 V9KeePIX6b]NYCa4i=kHbB0
+R4
+Z17 w1558058176
+Z18 8digitalClock.vt
+Z19 FdigitalClock.vt
+L0 59
+R8
+r1
+!s85 0
+31
+Z20 !s108 1558058180.895000
+Z21 !s107 digitalClock.vt|
+Z22 !s90 -work|work|digitalClock.vt|
+!s101 -O0
+R10
+Z23 ndigital@clock_vlg_check_tst
+vdigitalClock_vlg_sample_tst
+!i10b 1
+Z24 !s100 lDFV2O6@SF8IGMV=Jje;=1
+Z25 IIK4T76eX[5Z<5zk_6m>U>0
+Z26 VU?7L3XK56H2aM;SJDo_F=1
+R4
+R17
+R18
+R19
+L0 29
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z27 ndigital@clock_vlg_sample_tst
+vdigitalClock_vlg_vec_tst
+!i10b 1
+!s100 >UDICf3X:f=za`b7T5iY;3
+ImTkJM0fa6dzjh?8Pk;kT40
+Z28 VLQKcAzm?;gWT:zV=PIa]83
+R4
+R17
+R18
+R19
+Z29 L0 1065
+R8
+r1
+!s85 0
+31
+R20
+R21
+R22
+!s101 -O0
+R10
+Z30 ndigital@clock_vlg_vec_tst

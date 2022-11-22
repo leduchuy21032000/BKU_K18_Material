@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<title>Principle</title>
+	<meta charset="utf-8">
+	<meta name="author" content="TUT">
+	<meta name="description" content=""/>
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+
+	<nav class="tieude">
+  		<ul class="thanhtieude">
+    		<li><a href="trangchu.html">Home</a></li>
+    		<li><a href="nguyenli.html">Principle</a></li>
+    		<li><a href="cacthuattoan.html">algorithms</a></li>
+		<li><a href="tulieuthamkhao.html">References</a></li>
+		<li><a href="about.html">About us</a></li>
+		<li><a href="ketluan.html">More...</a></li>
+		</ul>
+	</nav>
+	<nav id="mucluc">
+		<ul class="thanhmucluc">
+			<li><a href="nguyenli.html#" class="muclon">How search works?</a></li>
+			<li><a href="nguyenli.html#crawling">1. Crawling and Indexing Data</a></li>
+			<li><a href="nguyenli.html#processing">2. Processing queries</a></li>
+			<li><a href="nguyenli.html#analyzing">&nbsp&nbsp&nbsp- Analyzing your words</a></li>
+			<li><a href="nguyenli.html#matching">&nbsp&nbsp&nbsp- Matching your search</a></li>
+			<li><a href="nguyenli.html#ranking">&nbsp&nbsp&nbsp- Ranking useful pages</a></li>
+			<li><a href="nguyenli.html#considering">&nbsp&nbsp&nbsp- Considering context</a></li>
+			<li><a href="nguyenli.html#return">3. Return the best results</a></li>
+		</ul>
+	</nav>
+<section class="than">
+	<h1 align="center"> HOW SEARCH WORKS? </h1>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Google Search được thực thi thông qua 3 bước sau:
+	<br> <br>
+	1. Thu thập dữ liệu và lập chỉ mục - Crawling and Indexing Data. 
+	<br> <br>
+	2. Xử lý truy vấn - Processing Queries. 
+	<br> <br>
+	3. Đưa ra kết quả - Return the results. 
+	<br> <br>
+	<img src = img/general.png>
+	<br>
+	<br> <br>
+	<a name="crawling"> </a>
+	<br>
+	<br> <br>
+	<h1 align="center">1. THU THẬP DỮ LIỆU VÀ CHỈ MỤC</h1>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Google thu thập dữ liệu thông qua Spider (hay còn gọi là Crawler) và sắp xếp dữ liệu bằng Indexing (lập chỉ mục). Spider có thể thu thập dữ liệu qua: 
+	<ul type=square>
+		<li> Link trên các site đã index theo chỉ định của Meta Name.
+		<li> Add URL form.
+		<li> IP Server Reversed, DNS.
+                <li> Full Domain Search.
+	</ul>
+        	<p>
+	<img src = img/index.png>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Cơ chế hoạt động của Spider: 
+	<p>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	- Đầu tiên, Spider sẽ thực hiện nhiệm vụ Crawling, nghĩa là lấy danh sách các máy chủ và trang Web phổ biến. Nó sẽ bắt đầu tìm kiếm với một Site nào đó, đánh dấu các từ chính và cốt yếu trên trang và lần theo các liên kết tìm thấy bên trong Site. Bằng cách này, hệ thống tìm kiếm của Google sẽ nhanh chóng thực hiện công việc trên toàn bộ các phần của trang Web.
+	<p>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	- Khi Spider xem xét các trang Web, nó lưu ý các từ bên trong trang Web và nơi tìm thấy từ đó. Các từ xuất hiện trong các thẻ <b> Title, Meta Description </b>được Spider nhận định là các từ quan trọng có liên quan tới sự tìm kiếm của người dùng.
+	<p>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	- Kế đó Google sẽ xây dựng các chỉ mục (index) để lưu thông tin mà Spider thu thập được. Bởi vì các quản trị viên luôn thay đổi, cập nhật thông tin lên các Website nên Spider sẽ luôn thực hiện Crawling và chỉ mục của Google luôn được cập nhật. Các thông tin lưu trong chỉ mục trên CSDL của Google đều được mã hoá. Việc xây dựng chỉ mục cho phép thông tin được tìm thấy một cách nhanh chóng.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Ví dụ: Website của bạn làm về ngành giáo dục (học online, tài liệu học tập), Google sẽ lưu chỉ mục Website của bạn vào mục "giáo dục"; nếu bạn làm trang đăng tin thể thao hàng ngày, nó sẽ lưu vào phần "thể thao". Như vậy việc tìm kiếm sẽ không bị chồng chéo lên nhau và quy trình sẽ nhanh hơn.
+	<p>
+	<a name="processing"> </a>
+	<br> <br> <br>
+	<h1 align="center">2. XỬ LÍ TRUY VẤN </h1>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Sau khi đã tạo được chỉ mục, vấn đề nảy sinh là người dùng thực sự muốn câu trả lời, chứ không phải là hàng tỷ trang web, và vì thế, hệ thống xếp hạng của Google phải tìm qua hàng trăm tỷ trang web trong chỉ mục Tìm kiếm để cung cấp cho người dùng kết quả hữu ích và phù hợp chỉ trong một phần nhỏ của giây. 
+	<p>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Các hệ thống xếp hạng này được tạo thành từ một loạt các <i> thuật toán </i> phân tích nội dung bạn đang tìm kiếm và thông tin gì cần trả về cho bạn. Trong quá trình phát triển Tìm kiếm, để làm cho tính năng này hữu ích hơn, Google đã tinh chỉnh các thuật toán của mình để đánh giá tìm kiếm và kết quả của bạn một cách chi tiết hơn nhằm làm cho dịch vụ hoạt động tốt hơn cho bạn. Đây chính là giai đoạn xử lý truy vấn.
+	<p>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Có tất cả 4 bước được thực hiện trong giai đoạn xử lý truy vấn này bao gồm:
+	<img src = img/PQ.png>
+	<a name="analyzing">
+	<br> <br>
+	<h2 align="center">ANALYZING YOUR WORDS </h2>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Việc hiểu được nghĩa của tìm kiếm của bạn là điều quan trọng để trả về câu trả lời thích hợp. Vì thế để tìm các trang có thông tin liên quan, bước đầu tiên của Google là phân tích các từ trong truy vấn của bạn có nghĩa gì. Google xây dựng các mô hình ngôn ngữ để cố giải mã những chuỗi từ nên tra trong chỉ mục. Hệ thống này mất 5 năm để phát triển và đã cải thiện đáng kể kết quả trong hơn 30% lượt tìm kiếm bằng các ngôn ngữ khác nhau. 
+	<p>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Quy trình này gồm các bước sau:
+	<ul type=square>
+		<li> Phân tích lỗi chính tả.
+		<li> Phân tích hệ thống từ đồng nghĩa. Ví dụ như: thay = thay thế, đổi = trao đổi, ...
+		<li> Phân tích xem người dùng đang tìm kiếm loại thông tin nào: cụ thể hay truy vấn rộng, có phải là từ khóa thịnh hành để đưa kết quả xuất bản mới nhất. 
+			<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Ví dụ như: Khi bạn search "Công nghệ 4.0" là truy vấn rộng, còn truy vấn cụ thể là "Công nghệ 4.0 là gì?" hay "Ảnh hưởng của công nghệ 4.0 đến Việt Nam", ...
+	</ul>
+	<img src = img/AYW.png>
+	<a name="matching">
+	<br> <br>
+	<h2 align="center">MATCHING YOUR SEARCH </h2>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Sau khi phân tích từ ngữ truy vấn, Google sẽ thực hiện các công việc sau: 
+	<ul type=square>
+		<li> Finding Web: Google tìm các trang web có thông tin khớp với truy vấn của người dùng.
+		<li> Finding in Index: Khi bạn tìm kiếm, ở mức độ cơ bản nhất, các \textit{thuật toán} sẽ tra cụm từ tìm kiếm trong chỉ mục để tìm các trang thích hợp dựa trên tần suất, vị trí các từ khoá đó xuất hiện trên một trang, liệu chúng xuất hiện trong tựa đề, tiêu đề hay nội dung.
+		<li> Matching: Hệ thống sẽ có các thuật toán đo mức độ phù hợp giữa kết quả tìm kiếm tiềm năng và nội dung đang tìm kiếm. 
+			<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Ví dụ khi bạn tìm từ "chó", có thể bạn không muốn một trang có từ "chó" xuất hiện hàng trăm lần. Google cố tìm hiểu xem liệu trang có cung cấp câu trả lời cho truy vấn của bạn không và không chỉ lặp lại truy vấn hay không. Vì thế các thuật toán Tìm kiếm phân tích liệu trang có nội dung thích hợp hay không — chẳng hạn như ảnh, video về chó hay thậm chí danh sách các giống chó.
+                <li> Prioritizing: Ưu tiên các trang có cùng ngôn ngữ với truy vấn hoặc ngôn ngữ tùy chọn của bạn.
+	</ul>
+	<a name="ranking">
+	<br> <br>
+	<h2 align="center">RANKING USEFUL PAGES</h2>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Đối với một truy vấn thông thường, có hàng nghìn, thậm chí là hàng triệu trang web có thể cung cấp thông tin liên quan. Vì thế, để giúp xếp hạng các trang tốt nhất đầu tiên, Google đã viết các thuật toán để đánh giá mức độ hữu ích của các trang web này, đặc biệt là thuật toán <b> Pagerank </b>.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Các thuật toán này phân tích hàng trăm yếu tố khác nhau để cố hiển thị thông tin tốt nhất có sẵn trên web, từ số lượt visits, độ mới mẻ của nội dung cho đến số lần xuất hiện của cụm từ tìm kiếm của bạn và liệu trang có cung cấp trải nghiệm người dùng tốt hay không. Để đánh giá độ đáng tin cậy và nguồn có căn cứ về chủ đề, Google tìm các trang web có vẻ được nhiều người dùng đánh giá cao đối với cùng truy vấn. Nếu trang web có nhiều backlinks (backlinks là những liên kết hướng tới website hoặc webpage từ những web khác nhau) từ các trang web nổi bật khác về chủ đề này, đó là một dấu hiệu tốt cho thấy thông tin có chất lượng cao.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Đối với các trang cố vươn lên đầu các kết quả tìm kiếm bằng cách lặp lại từ khoá, mua liên kết, vi phạm nguyên tắc quản trị web, Google có các thuật toán để xác định spam và xóa các trang web vi phạm khỏi kết quả.
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp
+	<b>
+	=> Trang nào đáp ứng nhiều tiêu chí hơn sẽ có thứ hạng cao hơn.
+	</b>
+	<img src = img/WG.png>
+	<a name="considering">
+	<br> <br>
+	<h2 align="center">CONSIDERING CONTEXT </h2>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Bên cạnh đó, các thông tin chẳng hạn như vị trí của bạn, lịch sử tìm kiếm và cài đặt Tìm kiếm đều giúp Google tùy chỉnh kết quả cho phù hợp và hữu ích với bạn nhất trong khoảnh khắc đó. 
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Google sử dụng quốc gia và vị trí của người dùng để cung cấp nội dung thích hợp với khu vực. Ví dụ: nếu bạn ở Chicago và tìm "football", Google có thể sẽ hiển thị cho bạn kết quả về môn bóng bầu dục và câu lạc bộ Chicago Bears trước tiên. Ngược lại, nếu bạn tìm "football" ở Luân Đôn, Google sẽ xếp hạng các kết quả về bóng đá và giải Premier League cao hơn.
+	<p>
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Ngoài ra, Cài đặt Tìm kiếm cũng là một chỉ báo quan trọng về việc bạn có khả năng thấy kết quả nào hữu ích, chẳng hạn như liệu bạn có thiết lập một ngôn ngữ ưu tiên hay chọn tham gia Tìm kiếm an toàn (một công cụ giúp lọc các kết quả không phù hợp) hay không.
+	<img src = img/KQTK.png>
+	<img src = img/NN.png>
+	<a name="return"> </a>
+	<br> <br> <br>
+	<h1 align="center">3. TRẢ KẾT QUẢ CHO NGƯỜI DÙNG</h1>
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Dựa vào các tiêu chí sắp xếp ở trên, Google sẽ hiện thị kết quả tìm kiếm phù hợp nhất cho người dùng trong thời gian rất nhanh. 
+	<p>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Không chỉ vậy, trước khi cung cấp cho bạn kết quả, Google đánh giá xem tất cả các thông tin liên quan đến nhau như thế nào: liệu chỉ có một chủ đề duy nhất trong kết quả tìm kiếm hay có nhiều chủ đề? Có phải có quá nhiều trang tập trung vào một cách diễn giải hời hợt, từ đó đảm bảo cung cấp thông tin đa dạng bằng nhiều định dạng (văn bản, hình ảnh, âm thanh, video, ...) chi tiết và hữu ích nhất cho loại tìm kiếm của bạn. Và khi web phát triển, Google cũng từng ngày phát triển hệ thống xếp hạng của mình để cung cấp kết quả tốt hơn cho nhiều truy vấn hơn.
+	<br> <br> <br>
+</section>
+</body>
+</html>
